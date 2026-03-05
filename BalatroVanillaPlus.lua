@@ -1171,7 +1171,7 @@ SMODS.Joker { --Head-Scratcher
             [1] = 'This Joker gains {C:mult}+#1#{} Mult',
             [2] = 'if played hand has exactly',
             [3] = '{C:attention}#2#{} scoring card(s)',
-            [4] = 'Number changes from 1 to 5',
+            [4] = "{s:0.8}then, number increases from 1 to 5",
             [5] = "{C:inactive}(Currently {C:red}+#3#{C:inactive} Mult)"
         }
     },

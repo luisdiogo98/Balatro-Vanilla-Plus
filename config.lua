@@ -1,0 +1,1 @@
+return {["jokers"]=true,["decks"]=true}

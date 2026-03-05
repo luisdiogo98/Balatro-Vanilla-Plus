@@ -1,0 +1,216 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 70
+
+# Add starting deck seals - royal deck
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''
+table.sort(card_protos, function (a, b) return 
+'''
+position = "before"
+payload = '''
+if self.GAME.starting_params.extra_seals then
+pseudoshuffle(card_protos, pseudoseed('royal'))
+for k, v in ipairs(card_protos) do
+            if k == 1 then v.g = 'Gold' end
+			if k == 2 then v.g = 'Red' end
+			if k == 3 then v.g = 'Purple' end
+			if k == 4 then v.g = 'Blue' end
+        end
+end
+'''
+match_indent = false
+
+# Add starting deck editions - premium deck
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''
+table.sort(card_protos, function (a, b) return 
+'''
+position = "before"
+payload = '''
+if self.GAME.starting_params.extra_editions then
+pseudoshuffle(card_protos, pseudoseed('premium'))
+for k, v in ipairs(card_protos) do
+            if k == 1 then v.d = 'foil' end
+			if k == 2 then v.d = 'holo' end
+			if k == 3 then v.d = 'polychrome' end
+        end
+end
+'''
+match_indent = false
+
+# Reset vouchers every blind - carnival deck
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+G.GAME.round_resets.blind_states.Big = 'Defeated'
+'''
+position = "at"
+payload = '''
+if G.GAME.starting_params.extra_vouchers then
+    G.GAME.current_round.voucher = SMODS.get_next_vouchers()
+end
+G.GAME.round_resets.blind_states.Big = 'Defeated'
+			'''
+match_indent = true
+
+# Reset vouchers every blind - carnival deck
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+G.GAME.round_resets.blind_states.Small = 'Defeated'
+'''
+position = "at"
+payload = '''
+if G.GAME.starting_params.extra_vouchers then
+    G.GAME.current_round.voucher = SMODS.get_next_vouchers()
+end
+G.GAME.round_resets.blind_states.Small = 'Defeated'
+			'''
+match_indent = true
+
+# Hide voucher restock warning - carnival deck
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = '''
+  elseif G.SETTINGS.language ~= 'en-us' then 
+'''
+position = "before"
+payload = '''
+  elseif G.GAME.starting_params.extra_vouchers then
+    e.states.visible = false
+			'''
+match_indent = true
+
+# Function to check if card is numbered card
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+  function Card:is_face(from_boss)
+'''
+position = "before"
+payload = '''
+  function Card:is_numbered(from_boss)
+    if self.debuff and not from_boss then return end
+    local id = self:get_id()
+    if not (id == 11 or id == 12 or id == 13 or id == 14) then
+        return true
+    end
+  end
+'''
+match_indent = false
+
+# Add context to use voucher
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = '''
+e.config.ref_table:redeem()
+'''
+position = "before"
+payload = '''
+G.GAME.total_vouchers = (G.GAME.total_vouchers or 0) + 1
+for i = 1, #G.jokers.cards do
+  G.jokers.cards[i]:calculate_joker({using_voucher = true, voucher = card})
+end
+'''
+match_indent = false
+
+# Logic for Angel card spawning
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+self.added_to_deck = true
+'''
+position = "after"
+payload = '''
+if (not from_shop and (self.ability.set == 'Tarot' or self.ability.set == 'Planet')) then
+  if not G.GAME.angel_has_created then
+    if next(find_joker('Angel')) and self.ability.set == 'Tarot' then
+        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+        G.GAME.angel_has_created = true
+        G.E_MANAGER:add_event(Event({
+              func = (function()
+                  if #G.consumeables.cards < G.consumeables.config.card_limit then
+                    SMODS.add_card {
+                        set = 'Planet',
+                    }
+                  end
+                  G.GAME.consumeable_buffer = 0
+                  return true
+              end)
+          }))
+    end
+    if next(find_joker('Angel')) and self.ability.set == 'Planet' then
+        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+        G.GAME.angel_has_created = true
+        G.E_MANAGER:add_event(Event({
+              func = (function()
+                  if #G.consumeables.cards < G.consumeables.config.card_limit then
+                    SMODS.add_card {
+                        set = 'Tarot',
+                    }
+                  end
+                  G.GAME.consumeable_buffer = 0
+                  return true
+              end)
+          }))
+    end
+  else G.GAME.angel_has_created = false end
+end
+'''
+match_indent = false
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+function Card:add_to_deck(from_debuff)
+'''
+position = "at"
+payload = '''
+function Card:add_to_deck(from_debuff, from_shop)
+'''
+match_indent = false
+
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = '''
+c1:add_to_deck()
+'''
+position = "at"
+payload = '''
+c1:add_to_deck(false, true)
+'''
+match_indent = false
+
+# Cosmologist add mult logic
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+G.GAME.hands[hand].mult = math.max(G.GAME.hands[hand].s_mult + G.GAME.hands[hand].l_mult*(G.GAME.hands[hand].level - 1), 1)
+'''
+position = "at"
+payload = '''
+if (G.GAME.hands[hand] and G.GAME.hands[hand].mult) then
+  G.GAME.hands[hand].mult = G.GAME.hands[hand].mult + G.GAME.hands[hand].l_mult
+else
+  G.GAME.hands[hand].mult = math.max(G.GAME.hands[hand].s_mult + G.GAME.hands[hand].l_mult*(G.GAME.hands[hand].level - 1), 1)
+end
+if (card and card.ability and card.ability.set and card.ability.set == 'Planet' and next(find_joker('Cosmologist'))) then
+  G.GAME.hands[hand].mult = G.GAME.hands[hand].mult + (G.GAME.hands[hand].l_chips / 2) - G.GAME.hands[hand].l_mult
+end
+'''
+match_indent = false

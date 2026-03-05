@@ -1,0 +1,13 @@
+{
+  "id": "BalatroVanillaPlus",
+  "name": "Vanilla+",
+  "display_name": "Vanilla+",
+  "author": ["TheThirdMan"],
+  "description": "Adds 30 new Jokers and 7 new Decks in vanilla Balatro's style.",
+  "prefix": "VP",
+  "main_file": "BalatroVanillaPlus.lua",
+  "priority": 70,
+  "badge_colour": "F4A6C7",
+  "version": "1.0.0",
+  "dependencies": ["Steamodded (>=1.0.0~BETA-0711a)"]
+}

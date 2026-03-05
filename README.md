@@ -58,3 +58,13 @@ Balatro mod with 39 new Jokers and 7 new Decks
 | Phantasm | $${\color{red}Rare}$$   | <img src="/git-assets/Phantasm.png" alt="Phantasm" width="138" height="186">   | Gives $${\color{darkred}X1}$$ Mult per $${\color{blue}Spectral}$$ card used this run |
 
 ## Decks
+
+| Name        | Image       | Effect |
+| ----------- | ----------- | ------ |
+| Inferno Deck      | <img src="/git-assets/Inferno.png" alt="Inferno Deck" width="75%" height="75%">         | Start run with $${\color{orange}2}$$ copies of $${\color{purple}The Devil}$$ and $${\color{yellow}\\$0}$$ |
+| Pirate Deck      | <img src="/git-assets/Pirate.png" alt="Pirate Deck" width="75%" height="75%">         | After defeating each $${\color{orange}Boss \space Blind}$$, create a $${\color{purple}The \space Hanged \space Man}$$ |
+| Royal Deck      | <img src="/git-assets/Royal.png" alt="Royal Deck" width="75%" height="75%">         | Start with a $${\color{orange}Gold \space Seal}$$, a $${\color{red}Red \space Seal}$$, a $${\color{purple}Purple \space Seal}$$, and a $${\color{blue}Blue \space Seal}$$ <br> -1 $${\color{orange}Booster \space Pack}$$ in the Shop |
+| Premium Deck      | <img src="/git-assets/Premium.png" alt="Premium Deck" width="75%" height="75%">         | Start with an $${\color{grey}Holographic}$$ card, a $${\color{grey}Foil}$$, a $${\color{grey}Polychrome}$$ card, and a copy of $${\color{purple}Death}$$ <br> $${\color{purple}Tarot}$$ cards no longer appear in the Shop |
+| Carnival Deck      | <img src="/git-assets/Carnival.png" alt="Carnival Deck" width="75%" height="75%">         | $${\color{orange}Vouchers}$$ restock after defeating each Blind <br> Voucher price increased by $${\color{orange}20\\%}$$ |
+| Alchemy Deck      | <img src="/git-assets/Alchemy.png" alt="Alchemy Deck" width="75%" height="75%">         | Played $${\color{orange}Three \space of \space a \space Kind}$$ create a $${\color{lightblue}Planet}$$ card <br> Played $${\color{orange}Four \space of \space a \space Kind}$$ create a $${\color{purple}Tarot}$$ card <br> Played $${\color{orange}Five \space of \space a \space Kind}$$ create a $${\color{blue}Spectral}$$ card |
+| Eldritch Deck      | <img src="/git-assets/Eldritch.png" alt="Eldritch Deck" width="75%" height="75%">         | At end of each Round: <br> $${\color{yellow}\\$0}$$ per remaining $${\color{blue}Hand}$$ <br> $${\color{yellow}\\$2}$$ per remaining $${\color{red}Discard}$$ |

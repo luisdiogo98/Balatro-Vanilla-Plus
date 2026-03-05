@@ -8,7 +8,7 @@ Balatro mod with 39 new Jokers and 7 new Decks, all expanding on the existing Va
 ## Installation
 1. Install [Lovely](https://github.com/ethangreen-dev/lovely-injector?tab=readme-ov-file#manual-installation).
 2. Install [Steamodded](https://github.com/Steamodded/smods/wiki).
-3. Download the [latest release](https://github.com/luisdiogo98/FoolHelper/releases) of this mod.
+3. Download the [latest release](https://github.com/luisdiogo98/Balatro-Vanilla-Plus/releases) of this mod.
 4. Unzip the folder, and move it into the `%appdata%/Balatro/Mods` folder.
 5. Restart the game to load the mod.
 

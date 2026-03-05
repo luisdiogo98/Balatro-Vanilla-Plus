@@ -1,5 +1,5 @@
 # Vanilla+
-Balatro mod with 39 new Jokers and 7 new Decks
+Balatro mod with 39 new Jokers and 7 new Decks, all expanding on the existing Vanilla mechanics.
 
 ## Requirements
 - [Lovely](https://github.com/ethangreen-dev/lovely-injector) - a Balatro injector.

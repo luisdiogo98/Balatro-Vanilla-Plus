@@ -1,7 +1,19 @@
 # Balatro-Vanilla-Plus
 Balatro mod with 39 new Jokers and 7 new Decks
 
-<h3>Jokers</h3>
+## Requirements
+- [Lovely](https://github.com/ethangreen-dev/lovely-injector) - a Balatro injector.
+- [Steamodded](https://github.com/ethangreen-dev/lovely-injector) - a Balatro modding framework.
+
+## Installation
+1. Install [Lovely](https://github.com/ethangreen-dev/lovely-injector?tab=readme-ov-file#manual-installation).
+2. Install [Steamodded](https://github.com/Steamodded/smods/wiki).
+3. Download the [latest release](https://github.com/luisdiogo98/FoolHelper/releases) of this mod.
+4. Unzip the folder, and move it into the `%appdata%/Balatro/Mods` folder.
+5. Restart the game to load the mod.
+
+
+## Jokers
   
 | Name        | Rarity                     | Image       | Effect |
 | ----------- | ---------                  | ----------- | ------ |
@@ -23,4 +35,4 @@ Balatro mod with 39 new Jokers and 7 new Decks
 | Wedding Ring | $${\color{blue}Common}$$   | <img src="/git-assets/Wedding Ring.png" alt="Wedding Ring" width="138" height="186">   |$${\color{red}+6}$$ Mult <br> $${\color{darkred}X2}$$ Mult with $${\color{orange}Bride}$$ |
 | Dollar | $${\color{blue}Common}$$   | <img src="/git-assets/Dollar.png" alt="Dollar" width="138" height="186">   | Earn $${\color{yellow}\\$1}$$ whenever you $${\color{orange}buy}$$ or $${\color{orange}sell}$$ an item |
 
-<h3>Decks</h3>
+## Decks
